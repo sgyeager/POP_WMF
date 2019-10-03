@@ -56,6 +56,19 @@ depth=xr.DataArray(np.zeros(np.shape(sst)),dims=sst.dims,coords=sst.coords)
 rho,drhods,drhodt = pop_tools.eos(salt=sss_psu,temp=sst,return_coefs=True,depth=depth)
 alpha = (drhodt/rho)*-1		# 1/degC
 beta = (drhods/rho)		# kg(Seawater)/kg(SALT)
+sigma0 = rho - 1000.
+sigma0=sigma0.drop(['z_t'])
+sigma0.attrs['units']='kg/m^3'
+sigma0.attrs['long_name']='Sigma referenced to z=0'
+sigma0.encoding['_FillValue']=1.e30
+
+depth=depth+2000.
+tmp = pop_tools.eos(salt=sss_psu,temp=sst,return_coefs=False,depth=depth)
+sigma2 = tmp - 1000.
+sigma2=sigma2.drop(['z_t'])
+sigma2.attrs['units']='kg/m^3'
+sigma2.attrs['long_name']='Sigma referenced to z=2000'
+sigma2.encoding['_FillValue']=1.e30
 
 #Load fluxes
 ds_ht = xr.open_mfdataset(fin_ht, combine='by_coords')
@@ -177,7 +190,8 @@ out_ds['SDEN_F_F']=SDEN_F
 #out_ds['beta']=beta
 #out_ds['rho_computed']=rho
 #out_ds['SSD']=ssd
-print(out_ds.TLONG.attrs)
+out_ds['sigma0']=sigma0
+out_ds['sigma2']=sigma2
 out_ds.to_netcdf(fout,unlimited_dims='time')
 
 time2=timer.time()
