@@ -25,6 +25,7 @@ time=ds['time']
 time.encoding['_FillValue']=None        # because xarray is weird
 tlon = ds['TLONG']
 tlat = ds['TLAT']
+tarea = ds['TAREA']
 ssd = ds['RHO'].isel(z_t=0)
 ssd=ssd.drop(['z_t'])
 sst = ds['TEMP'].isel(z_t=0)
@@ -202,6 +203,7 @@ out_ds['SDEN_F_F']=SDEN_F
 #out_ds['beta']=beta
 out_ds['sigma0']=sigma0
 out_ds['sigma2']=sigma2
+out_ds['TAREA']=tarea
 #out_ds['SSD']=ssd
 out_ds.to_netcdf(fout,unlimited_dims='time')
 
