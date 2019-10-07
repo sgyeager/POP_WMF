@@ -12,13 +12,15 @@ time1=timer.time()
 append_to_infile=False  # True with "-a"
 sigmachoice = 'sigma0'
 
-indir = '/glade/scratch/yeager/cesm2/wmf'
-outdir = '/glade/scratch/yeager/cesm2/wmf'
-case = 'b.e21.B1850.f09_g17.CMIP6-piControl.001'
-tstmp = '000101-009912'
-fin = f'{indir}/{case}.pop.h.SDEN_F.{tstmp}.nc'
-fout = f'{indir}/{case}.pop.h.WMF.{tstmp}.nc'
+#indir = '/glade/scratch/yeager/cesm2/wmf'
+#outdir = '/glade/scratch/yeager/cesm2/wmf'
+#case = 'b.e21.B1850.f09_g17.CMIP6-piControl.001'
+#tstmp = '000101-009912'
+#fin = f'{indir}/{case}.pop.h.SDEN_F.{tstmp}.nc'
+#fout = f'{indir}/{case}.pop.h.WMF.{tstmp}.nc'
 
+fin = sys.argv[-1]
+fout = fin.replace('SDEN_F','WMF')
 focn = '/glade/p/cgd/oce/people/yeager/POP_grids/gx1v6_ocn.nc'
 
 if ('-a' in sys.argv[:]):
