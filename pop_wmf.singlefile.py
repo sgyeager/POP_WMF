@@ -13,7 +13,7 @@ append_to_infile=False  # True with "-a"
 sigmachoice = 'sigma0'
 
 fin=sys.argv[-1]		# Should be a *.SDEN_F.nc file
-fout=fin[:-2]+'WMF.nc'
+fout=fin.replace('SDEN_F','WMF')
 focn = '/glade/p/cgd/oce/people/yeager/POP_grids/gx1v6_ocn.nc'
 
 if ('-a' in sys.argv[:]):
