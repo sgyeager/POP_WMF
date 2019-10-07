@@ -17,6 +17,7 @@ outdir = '/glade/scratch/yeager/cesm2/wmf'
 case = 'b.e21.B1850.f09_g17.CMIP6-piControl.001'
 tstmp = '000101-009912'
 fin = f'{indir}/{case}.pop.h.SDEN_F.{tstmp}.nc'
+fout = f'{indir}/{case}.pop.h.WMF.{tstmp}.nc'
 
 focn = '/glade/p/cgd/oce/people/yeager/POP_grids/gx1v6_ocn.nc'
 
