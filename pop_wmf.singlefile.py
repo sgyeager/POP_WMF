@@ -21,7 +21,7 @@ if ('-a' in sys.argv[:]):
 if ('-sig2' in sys.argv[:]):
    sigmachoice='sigma2'
 
-#Load SST/SSS
+#Load SSD & Surface Density Fluxes
 ds = xr.open_dataset(focn)
 rmask = ds['REGION_MASK']
 rmask = rmask.drop(['ULONG','ULAT'])

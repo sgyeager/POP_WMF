@@ -27,8 +27,9 @@ if ('-a' in sys.argv[:]):
    append_to_infile=True
 if ('-sig2' in sys.argv[:]):
    sigmachoice='sigma2'
+   fout = fout[:-2]+'sig2.nc'
 
-#Load SST/SSS
+#Load SSD & Surface Density Fluxes
 ds = xr.open_dataset(focn)
 rmask = ds['REGION_MASK']
 rmask = rmask.drop(['ULONG','ULAT'])
